@@ -3,10 +3,12 @@ import data from "../../json/data.json";
 import { usePreloadImages } from "../../utils";
 import "./Place.css";
 
+const placePhotos = data.places.map((place) => place.imageUrl);
+
 const Place = () => {
   const [activeId, setActiveId] = useState(data.places[0].id);
   const active = data.places.find((place) => place.id === activeId);
-  usePreloadImages(data.places.map((place) => place.imageUrl));
+  usePreloadImages(placePhotos);
 
   return (
     <section className="space" id="space" aria-labelledby="space-title">

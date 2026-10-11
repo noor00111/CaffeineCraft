@@ -16,6 +16,7 @@ const partNames = {
 };
 
 const coffeeIds = data.coffees.map((coffee) => coffee.id);
+const coffeePhotos = data.coffees.map((coffee) => coffee.imageUrl);
 
 const Glass = ({ coffee }) => {
   let filled = 0;
@@ -33,8 +34,7 @@ const Glass = ({ coffee }) => {
       role="img"
       aria-label={`${coffee.title}: ${coffee.layers
         .map((l) => `${l.ml} ml ${partNames[l.part].toLowerCase()}`)
-        .join(", ")}`}
-    >
+        .join(", ")}`}>
       <defs>
         <clipPath id="glass-shape">
           <polygon points="0,0 200,0 184,300 16,300" />
@@ -46,7 +46,6 @@ const Glass = ({ coffee }) => {
         </pattern>
       </defs>
 
-      {/* Volume ticks */}
       {[60, 120, 180, 240].map((ml) => {
         const y = GLASS_H - ml * unitsPerMl;
         return (
@@ -59,14 +58,12 @@ const Glass = ({ coffee }) => {
 
       <g clipPath="url(#glass-shape)">
         <rect className="glass-body" width="200" height="300" />
-        {/* key on the coffee so the pour replays when the drink changes */}
         <g key={coffee.id}>
           {layers.map((layer, i) => (
             <g
               key={layer.part}
               className="glass-layer"
-              style={{ animationDelay: `${i * 220}ms` }}
-            >
+              style={{ animationDelay: `${i * 220}ms` }}>
               <rect
                 x="0"
                 y={layer.y}
@@ -78,8 +75,7 @@ const Glass = ({ coffee }) => {
                 <text
                   className={`layer-label layer-label--${layer.part}`}
                   x="100"
-                  y={layer.y + layer.height / 2 + 5}
-                >
+                  y={layer.y + layer.height / 2 + 5}>
                   {layer.ml} ml
                 </text>
               )}
@@ -95,7 +91,7 @@ const Glass = ({ coffee }) => {
 
 const UniqueCategory = () => {
   const [selected, setSelected] = useQueryState("coffee", coffeeIds, "cappuccino");
-  usePreloadImages(data.coffees.map((c) => c.imageUrl));
+  usePreloadImages(coffeePhotos);
   const coffee = data.coffees.find((c) => c.id === selected);
   const total = coffee.layers.reduce((sum, layer) => sum + layer.ml, 0);
 
@@ -117,8 +113,7 @@ const UniqueCategory = () => {
             className="coffee-tabs"
             role="tablist"
             aria-label="Coffees"
-            aria-orientation="vertical"
-          >
+            aria-orientation="vertical">
             {data.coffees.map((c) => (
               <button
                 key={c.id}
@@ -131,8 +126,8 @@ const UniqueCategory = () => {
                 tabIndex={c.id === selected ? 0 : -1}
                 className="coffee-tab"
                 onClick={() => setSelected(c.id)}
-                onKeyDown={(e) => handleTabKeys(e, coffeeIds, selected, setSelected)}
-              >
+                onKeyDown={(e) => handleTabKeys(e, coffeeIds, selected, setSelected)}>
+
                 <span className="coffee-tab-name">{c.title}</span>
                 <span className="price">{formatTk(c.price)}</span>
               </button>
@@ -143,8 +138,7 @@ const UniqueCategory = () => {
             className="coffee-panel"
             id="coffee-panel"
             role="tabpanel"
-            aria-labelledby={`tab-${coffee.id}`}
-          >
+            aria-labelledby={`tab-${coffee.id}`}>
             <figure className="glass-wrap">
               <Glass coffee={coffee} />
               <figcaption className="eyebrow">240 ml glass, drawn to scale</figcaption>

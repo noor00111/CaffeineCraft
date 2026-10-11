@@ -22,7 +22,7 @@ The standout feature is **"What's in the cup"**: pick a drink and a to-scale 240
 ![Photo gallery of the café, followed by the footer with address, hours, contact and newsletter sign-up](./public/screenshots/space-and-visit.png)
 
 ### Mobile
-<img src="./public/screenshots/mobile.jpg" alt="The hero section on a phone-sized screen" width="300" />
+<img src="./public/screenshots/mobile.png" alt="The hero section on a phone-sized screen" width="300" />
 
 ## Features
 
@@ -34,7 +34,6 @@ The standout feature is **"What's in the cup"**: pick a drink and a to-scale 240
 - **Visit:** address, hours, clickable email and phone links, and a newsletter sign-up form.
 - **Shareable state:** the selected coffee and menu tab are saved in the URL, for example `?coffee=mocha&menu=desserts`, so a link opens the same view.
 
-
 ## Tech Stack
 
 - **Frontend:** React, JavaScript
@@ -43,8 +42,6 @@ The standout feature is **"What's in the cup"**: pick a drink and a to-scale 240
 - **Testing:** Jest and React Testing Library
 
 ## Getting Started
-
-You need **Node.js 18 or newer**.
 
 ```bash
 git clone <this-repo-url>

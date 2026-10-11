@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 const taka = new Intl.NumberFormat("en-US");
-export const formatTk = (amount) => `Tk ${taka.format(amount)}`;
+
+export const formatTk = (amount) => `Tk ${taka.format(amount)}`;
+
 export const useQueryState = (key, allowed, fallback) => {
   const [value, setValue] = useState(() => {
     const fromUrl = new URLSearchParams(window.location.search).get(key);
@@ -33,11 +35,12 @@ export const usePreloadImages = (urls) => {
     }
     window.addEventListener("load", preload, { once: true });
     return () => window.removeEventListener("load", preload);
-  }, []);
+  }, [urls]);
 };
 
 export const handleTabKeys = (event, ids, current, select) => {
   const index = ids.indexOf(current);
+
   const moves = {
     ArrowRight: index + 1,
     ArrowDown: index + 1,
@@ -46,10 +49,13 @@ export const handleTabKeys = (event, ids, current, select) => {
     Home: 0,
     End: ids.length - 1,
   };
+
   if (!(event.key in moves)) return;
   event.preventDefault();
+
   const nextId = ids[(moves[event.key] + ids.length) % ids.length];
   select(nextId);
+  
   const tablist = event.currentTarget.closest('[role="tablist"]');
   tablist?.querySelector(`[data-tab="${nextId}"]`)?.focus();
 };
