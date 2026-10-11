@@ -1,46 +1,57 @@
 import React, { useState } from "react";
 import data from "../../json/data.json";
+import { usePreloadImages } from "../../utils";
 import "./Place.css";
 
 const Place = () => {
-  const [imageSelect, setImageSelect] = useState(data.places[0].imageUrl);
+  const [activeId, setActiveId] = useState(data.places[0].id);
+  const active = data.places.find((place) => place.id === activeId);
+  usePreloadImages(data.places.map((place) => place.imageUrl));
 
   return (
-    <div>
-      <section className="place" id="place">
-        <div className="place-container">
-          <div className="place-content">
-            <div className="place-details">
-              <h2 className="title">Locate a location that you admire!</h2>
-              <p className="description">
-                We offer the ideal environment, complete with lovely decor and
-                <br /> positive energy, for continued productivity and focus
-              </p>
-            </div>
+    <section className="space" id="space" aria-labelledby="space-title">
+      <div className="space-inner wrap">
+        <header className="section-head space-head">
+          <p className="eyebrow">The space</p>
+          <h2 id="space-title" className="display">Room to get things done</h2>
+          <p>
+            A busy bar up front, tables for two by the window, and quieter
+            corners at the back for when you need to focus.
+          </p>
 
-            <div className="img-place">
-              <img src={imageSelect} className="img-place-big" />
-
-              <div className="img-place-smalls">
-                {data.places.map((place) => {
-                  return (
-                    <img
-                      key={place.id}
-                      src={place.imageUrl}
-                      alt="Thumbnail"
-                      onClick={() => setImageSelect(place.imageUrl)}
-                      className={`img-place-small ${
-                        imageSelect === place.imageUrl && "active"
-                      }`}
-                    />
-                  );
-                })}
-              </div>
-            </div>
+          <div className="space-thumbs" role="group" aria-label="Photos of the café">
+            {data.places.map((place) => (
+              <button
+                key={place.id}
+                type="button"
+                className="space-thumb"
+                aria-pressed={place.id === activeId}
+                aria-label={`Show photo: ${place.alt}`}
+                onClick={() => setActiveId(place.id)}>
+                <img
+                  src={place.thumbUrl}
+                  alt=""
+                  width="176"
+                  height="176"
+                  loading="lazy"
+                />
+              </button>
+            ))}
           </div>
-        </div>
-      </section>
-    </div>
+        </header>
+
+        <figure className="space-figure">
+          <img
+            key={active.id}
+            src={active.imageUrl}
+            alt={active.alt}
+            width={active.width}
+            height={active.height}
+            loading="lazy"
+          />
+        </figure>
+      </div>
+    </section>
   );
 };
 

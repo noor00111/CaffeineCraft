@@ -1,115 +1,100 @@
-.items {
-    padding: 0 3rem;
+.kitchen {
+    padding-block: clamp(4rem, 10vw, 7.5rem);
 }
 
-.items-container h1 {
-    padding: 1rem;
-    color: whitesmoke;
-    margin-bottom: 3rem;
-    font-weight: 300;
-    background-color: rgb(32, 32, 32);
-    box-shadow: 2px 2px 2px 2px rgb(120, 114, 114);
-    text-align: center;
+.kitchen-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
 }
 
-.items-filter {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 5rem;
-    margin-bottom: 2.5rem;
-}
-
-
-.item h4 {
-    text-align: center;
-    cursor: pointer;
-    font-size: 1.5rem;
-    font-weight: 700;
-    font-family: Arial, Helvetica, sans-serif;
-    color: rgb(125, 40, 125);
-    box-shadow: 2px 2px 2px 2px;
-        padding: 0.7rem;
-
-}
-
-
-.active-item h4 {
-    background-color: rgba(255, 255, 255, 0.1);
-  padding: 1rem;
-  border-radius: 0.4rem;
-  box-shadow: 0 0 5px rgba(125, 40, 125, 0.4);
-}
-
-.items-content {
-    margin-bottom: 3rem;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-}
-
-.items-card {
-    background-color: rgb(210, 202, 202);
-    border-radius: 0.8rem;
-}
-
-.items-img {
-    width: 100%;
-    height: 360px;
-    border-radius: 0.7rem 0.7rem 0 0;
-    object-fit: cover;
-}
-
-.items-data {
-    padding: 0.9rem 0 1.1rem 0.9rem;
-    position: relative;
-}
-
-.items-data h2 {
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-
-.items-data h3 {
-    font-size: 1.5rem;
-    margin-bottom: 3rem;
-}
-
-.btn-items {
+.kitchen-tab {
     display: inline-flex;
-    font-size: 1.3rem;
-    padding: 0.7rem;
-    border-radius: 60%;
-    background-color: rgb(249, 195, 249);
-    color: rgb(10, 10, 10);
-    box-shadow: 0 5px 13px gray;
-    right: 1rem;
-    top: -1.3rem;
-    position: absolute;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 2.75rem;
+    padding: 0.5rem 1.1rem;
+    border: 2px solid var(--espresso);
+    border-radius: 999px;
+    background: transparent;
+    font-weight: 600;
     cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-@media screen and (max-width: 768px) {
+.kitchen-tab:hover {
+    background: rgba(35, 21, 14, 0.08);
+}
 
-    .items {
-        padding: 0 1.5rem;
-    }
-    .items-container h1 {
-        font-size: 1.4rem;
-        padding: 0.5rem;
-    }
-    .items-filter {
+.kitchen-tab[aria-selected="true"] {
+    background: var(--espresso);
+    color: var(--paper);
+}
+
+.kitchen-tab-count {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 400;
+    opacity: 0.75;
+}
+
+.menu-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(2rem, 6vw, 5rem);
+    border-top: 2px solid var(--espresso);
+}
+
+.menu-item {
+    display: grid;
+    grid-template-columns: auto minmax(0, max-content) minmax(1.5rem, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+    padding-block: 0.9rem;
+    border-bottom: 1px solid rgba(35, 21, 14, 0.15);
+}
+
+.menu-thumb {
+    width: 4.5rem;
+    height: 4.5rem;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.menu-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.6rem;
+    line-height: 1.05;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+}
+
+.menu-leader {
+    align-self: center;
+    height: 0;
+    border-bottom: 2px dotted rgba(35, 21, 14, 0.35);
+    transform: translateY(0.4rem);
+}
+
+.menu-price {
+    font-size: 0.975rem;
+    font-weight: 500;
+}
+
+@media (max-width: 760px) {
+    .menu-list {
         grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    .item h4 {
-        font-size: 1rem;
-    }
-    .items-content {
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 2rem;
-    }
-    .items-img {
-        height: 270px;
     }
 
+    .menu-thumb {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+
+    .menu-name {
+        font-size: 1.35rem;
+    }
 }

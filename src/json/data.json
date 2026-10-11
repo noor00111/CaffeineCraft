@@ -1,116 +1,237 @@
 {
+    "coffees": [
+        {
+            "id": "ristretto",
+            "title": "Ristretto",
+            "price": 90,
+            "imageUrl": "./images/ristretto-coffee.jpeg",
+            "width": 801,
+            "height": 667,
+            "note": "A short, tight pull. Half the water of a normal shot, so it's sweeter, thicker and over in three sips.",
+            "layers": [
+                {
+                    "part": "espresso",
+                    "ml": 20
+                }
+            ]
+        },
+        {
+            "id": "americano",
+            "title": "Americano",
+            "price": 70,
+            "imageUrl": "./images/americano-hot-coffee.jpg",
+            "width": 900,
+            "height": 600,
+            "note": "A double shot opened up with hot water. Long, clean, and the one to order if you plan to stay a while.",
+            "layers": [
+                {
+                    "part": "espresso",
+                    "ml": 60
+                },
+                {
+                    "part": "water",
+                    "ml": 150
+                }
+            ]
+        },
+        {
+            "id": "cappuccino",
+            "title": "Cappuccino",
+            "price": 180,
+            "imageUrl": "./images/cappccino-coffee.jpg",
+            "width": 900,
+            "height": 994,
+            "note": "Equal thirds: espresso, steamed milk and a deep cap of foam. Strong enough to taste the coffee through the milk.",
+            "layers": [
+                {
+                    "part": "espresso",
+                    "ml": 60
+                },
+                {
+                    "part": "milk",
+                    "ml": 60
+                },
+                {
+                    "part": "foam",
+                    "ml": 60
+                }
+            ]
+        },
+        {
+            "id": "latte",
+            "title": "Latte",
+            "price": 95,
+            "imageUrl": "./images/latte-coffee.jpg",
+            "width": 900,
+            "height": 600,
+            "note": "Mostly milk, with a thin layer of microfoam on top. The softest coffee on the bar.",
+            "layers": [
+                {
+                    "part": "espresso",
+                    "ml": 60
+                },
+                {
+                    "part": "milk",
+                    "ml": 150
+                },
+                {
+                    "part": "foam",
+                    "ml": 20
+                }
+            ]
+        },
+        {
+            "id": "mocha",
+            "title": "Mocha",
+            "price": 55,
+            "imageUrl": "./images/mocha-coffee.jpg",
+            "width": 900,
+            "height": 675,
+            "note": "A latte built on a base of melted chocolate. Dessert and caffeine in the same glass.",
+            "layers": [
+                {
+                    "part": "chocolate",
+                    "ml": 30
+                },
+                {
+                    "part": "espresso",
+                    "ml": 60
+                },
+                {
+                    "part": "milk",
+                    "ml": 110
+                },
+                {
+                    "part": "foam",
+                    "ml": 20
+                }
+            ]
+        }
+    ],
     "categories": [
         {
-            "_id": "pqr567",
-            "category": "main-menu",
+            "id": "pizza",
+            "category": "mains",
             "title": "Pizza",
-            "price": "700",
-            "imageUrl": "./images/menu/pizza.jpg"
+            "price": 700,
+            "imageUrl": "./images/menu/thumbs/pizza.jpg"
         },
         {
-            "_id": "pqr567",
-            "category": "main-menu",
+            "id": "burger",
+            "category": "mains",
             "title": "Burger",
-            "price": "160",
-            "imageUrl": "./images/menu/burger.jpg"
+            "price": 160,
+            "imageUrl": "./images/menu/thumbs/burger.jpg"
         },
         {
-            "_id": "pqr567",
-            "category": "main-menu",
+            "id": "chicken-soup",
+            "category": "mains",
             "title": "Chicken Soup",
-            "price": "320",
-            "imageUrl": "./images/menu/chicken-soup.jpg"
+            "price": 320,
+            "imageUrl": "./images/menu/thumbs/chicken-soup.jpg"
         },
         {
-            "_id": "pqr567",
-            "category": "main-menu",
+            "id": "chowmein",
+            "category": "mains",
             "title": "Chicken Chowmein",
-            "price": "220",
-            "imageUrl": "./images/menu/chicken-chowmein.jpg"
+            "price": 220,
+            "imageUrl": "./images/menu/thumbs/chicken-chowmein.jpg"
         },
         {
-            "_id": "pqr567",
-            "category": "main-menu",
-            "title": "Vegitable Soup",
-            "price": "200",
-            "imageUrl": "./images/menu/veg-soup.jpg"
+            "id": "veg-soup",
+            "category": "mains",
+            "title": "Vegetable Soup",
+            "price": 200,
+            "imageUrl": "./images/menu/thumbs/veg-soup.jpg"
         },
         {
-            "_id": "pqr567",
-            "category": "main-menu",
+            "id": "pasta",
+            "category": "mains",
             "title": "Italian Pasta",
-            "price": "250",
-            "imageUrl": "./images/menu/italian-pasta.jpg"
+            "price": 250,
+            "imageUrl": "./images/menu/thumbs/italian-pasta.jpg"
         },
         {
-            "_id": "pqr567",
-            "category": "main-menu",
+            "id": "ramen",
+            "category": "mains",
             "title": "Ramen",
-            "price": "320",
-            "imageUrl": "./images/menu/ramen.jpg"
+            "price": 320,
+            "imageUrl": "./images/menu/thumbs/ramen.jpg"
         },
         {
-            "_id": "pqr567",
-            "category": "deserts",
-            "title": "Pestry",
-            "price": "60",
-            "imageUrl": "./images/menu/pestry.jpg"
+            "id": "pastry",
+            "category": "desserts",
+            "title": "Pastry",
+            "price": 60,
+            "imageUrl": "./images/menu/thumbs/pestry.jpg"
         },
         {
-            "_id": "pqr567",
-            "category": "deserts",
+            "id": "cupcake",
+            "category": "desserts",
             "title": "Cupcake",
-            "price": "120",
-            "imageUrl": "./images/menu/cupcake.jpg"
+            "price": 120,
+            "imageUrl": "./images/menu/thumbs/cupcake.jpg"
         },
         {
-            "_id": "pqr567",
-            "category": "deserts",
+            "id": "pudding",
+            "category": "desserts",
             "title": "Pudding",
-            "price": "50",
-            "imageUrl": "./images/menu/pudding.jpg"
+            "price": 50,
+            "imageUrl": "./images/menu/thumbs/pudding.jpg"
         },
         {
-            "_id": "pqr567",
+            "id": "oreo-shake",
             "category": "drinks",
-            "title": "Oreo shake",
-            "price": "170",
-            "imageUrl": "./images/menu/oreo shake.jpg"
+            "title": "Oreo Shake",
+            "price": 170,
+            "imageUrl": "./images/menu/thumbs/oreo-shake.jpg"
         },
         {
-            "_id": "pqr567",
+            "id": "strawberry-shake",
             "category": "drinks",
-            "title": "Strawberry shake",
-            "price": "210",
-            "imageUrl": "./images/menu/strawbery-shake.jpg"
+            "title": "Strawberry Shake",
+            "price": 210,
+            "imageUrl": "./images/menu/thumbs/strawbery-shake.jpg"
         },
         {
-            "_id": "pqr567",
+            "id": "lemonade",
             "category": "drinks",
-            "title": "Lemonade juice",
-            "price": "120",
-            "imageUrl": "./images/menu/lemonade.jpg"
+            "title": "Lemonade",
+            "price": 120,
+            "imageUrl": "./images/menu/thumbs/lemonade.jpg"
         },
         {
-            "_id": "pqr567",
+            "id": "orange-juice",
             "category": "drinks",
-            "title": "Orange juice",
-            "price": "110",
-            "imageUrl": "./images/menu/orange-juice.jpg"
+            "title": "Orange Juice",
+            "price": 110,
+            "imageUrl": "./images/menu/thumbs/orange-juice.jpg"
         }
     ],
     "places": [
         {
-            "_id": "pqr567",
-            "imageUrl": "./images/place/coffee-place.jpg"
+            "id": "counter",
+            "imageUrl": "./images/place/coffee-place1.jpg",
+            "width": 1000,
+            "height": 637,
+            "alt": "Baristas working the espresso bar under the chalkboard menu",
+            "thumbUrl": "./images/place/thumbs/coffee-place1.jpg"
         },
         {
-            "_id": "pqr567",
-            "imageUrl": "./images/place/coffee-place1.jpg"
+            "id": "tables",
+            "imageUrl": "./images/place/coffee-place.jpg",
+            "width": 1200,
+            "height": 800,
+            "alt": "Two friends sharing a latte and a cup of coffee at a window table",
+            "thumbUrl": "./images/place/thumbs/coffee-place.jpg"
         },
         {
-            "_id": "pqr567",
-            "imageUrl": "./images/place/coffee-place2.jpg"
+            "id": "corner",
+            "imageUrl": "./images/place/coffee-place2.jpg",
+            "width": 1200,
+            "height": 800,
+            "alt": "A cup of coffee and a croissant on a round wooden table by the bar",
+            "thumbUrl": "./images/place/thumbs/coffee-place2.jpg"
         }
     ]
 }

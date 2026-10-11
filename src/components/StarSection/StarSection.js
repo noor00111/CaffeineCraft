@@ -1,28 +1,42 @@
-import React from 'react';
-import { Fade } from 'react-reveal';
-import './StarSection.css';
+import React from "react";
+import "./StarSection.css";
+
 const StarSection = () => {
-
-    const Order = () =>{
-    window.scrollTo({
-    top: 1150,
-    behavior: 'smooth'
-        })
-            }
-
-    return (
-        <div>
-            <main className='main' id='main'>
-                <section className='star-content' id='home' style={{backgroundImage: `url(./images/coffee-bg.jpg)`}}>
-                  <Fade top>
-                  <h1>Relax in a comfortable spot and start your day<br/> with
-             your favourite cup of coffee.</h1>
-                    <button onClick={Order}>Order</button>
-                  </Fade>
-                </section>
-            </main>
+  return (
+    <section className="hero" id="home" aria-labelledby="hero-title">
+      <div className="hero-inner wrap">
+        <div className="hero-copy">
+          <p className="eyebrow">Road 30, Dynamic Town · Mon–Fri, 8am–5pm</p>
+          <h1 id="hero-title" className="display hero-title">
+            Stay for the <em>second</em> cup.
+          </h1>
+          <p className="hero-lede">
+            A coffee house built for long mornings: five espresso drinks done
+            properly, a kitchen that cooks until close, and a table you can
+            keep while you work.
+          </p>
+          <div className="hero-actions">
+            <a href="#coffee" className="btn btn-primary">
+              Choose a coffee
+            </a>
+            <a href="#kitchen" className="btn btn-ghost">
+              See the kitchen menu
+            </a>
+          </div>
         </div>
-    );
+
+        <figure className="hero-figure">
+          <img
+            src="./images/coffee-bg.jpg"
+            alt="A blue cup of black coffee beside a hand grinder and a sack of beans"
+            width="1200"
+            height="779"
+            fetchpriority="high"
+          />
+        </figure>
+      </div>
+    </section>
+  );
 };
 
 export default StarSection;

@@ -1,73 +1,245 @@
-.unique-container {
-    padding: 0 10rem;
+.coffee {
+    padding-block: clamp(4rem, 10vw, 7.5rem);
+    background: var(--paper);
+    border-block: 1px solid rgba(35, 21, 14, 0.1);
 }
 
-.unique-box h3 {
-    color: plum;
-    text-align: center;
-    font-size: 1.5rem;
-    margin: 2rem 0;
-}
-
-.unique-category {
+.coffee-layout {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    justify-content: center;
-    background-color: rgb(40, 31, 48);
-    gap: 2rem;
-    margin-bottom: 3rem;
+    grid-template-columns: minmax(12rem, 15rem) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: start;
 }
 
+.coffee-tabs {
+    display: grid;
+    border-top: 2px solid var(--espresso);
+}
 
-.unique-coffees {
-    margin: 10px;
-    border: 2px solid rgb(13, 11, 11);
-    border-radius: 5px;
-    box-shadow: 2px 2px 3px 4px rgb(13, 11, 11);
+.coffee-tab {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0.25rem;
+    border: 0;
+    border-bottom: 1px solid rgba(35, 21, 14, 0.15);
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    color: var(--roast);
+    transition: color 0.15s ease;
+}
+
+.coffee-tab-name {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.75rem;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.coffee-tab .price {
+    font-size: 0.875rem;
+}
+
+.coffee-tab:hover {
+    color: var(--espresso);
+}
+
+.coffee-tab[aria-selected="true"] {
+    color: var(--cobalt);
+    box-shadow: inset 4px 0 0 var(--cobalt);
+    padding-left: 1rem;
+}
+
+/* Panel */
+.coffee-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    align-items: start;
+}
+
+.glass-wrap {
+    display: grid;
+    gap: 1rem;
     justify-items: center;
-    padding: 10px;
-
 }
 
-.unique-coffees h2 {
-    text-align: center;
-    color: aliceblue;
-    font-size: 1.1rem;
-    margin-bottom: 10px;
+.glass {
+    width: 100%;
+    max-width: 18rem;
+    height: auto;
+    overflow: visible;
 }
 
-.unique-coffees p {
-    text-align: center;
-    color: aliceblue;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
+.glass-body {
+    fill: rgba(31, 69, 181, 0.04);
 }
 
-.coffee img {
-    width: 110px;
-    height: 90px;
-    transition: 0.5s;
-    border: 2px solid;
-    border-radius: 50%;
-    padding: 0.2rem;
-    margin-bottom: 1rem;
-    background-color: black;
-    box-shadow: 2px 2px 2px 2px;
+.glass-outline {
+    fill: none;
+    stroke: var(--espresso);
+    stroke-width: 4;
+    stroke-linejoin: round;
+}
+
+.glass-tick line {
+    stroke: var(--roast);
+    stroke-width: 1.5;
+}
+
+.glass-tick text {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    fill: var(--roast);
+}
+
+.glass-layer {
+    transform-box: fill-box;
+    transform-origin: bottom;
+    animation: pour 0.55s cubic-bezier(0.3, 0.6, 0.3, 1) both;
+}
+
+@keyframes pour {
+    from {
+        transform: scaleY(0);
+    }
+    to {
+        transform: scaleY(1);
+    }
+}
+
+.layer-label {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 500;
+    text-anchor: middle;
+    fill: var(--espresso);
+}
+
+.layer-label--espresso,
+.layer-label--chocolate {
+    fill: var(--paper);
+}
+
+.coffee-detail {
+    display: grid;
+    gap: 1rem;
+}
+
+.coffee-photo {
+    width: 100%;
+    aspect-ratio: 3 / 2;
     object-fit: cover;
+    border-radius: 0.5rem;
+    animation: photo-in 0.4s ease both;
 }
 
+@keyframes photo-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
-@media screen and (max-width: 768px) {
+.coffee-name {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin-top: 0.5rem;
+}
 
-    .unique-container {
-        padding: 0 5%;
+.coffee-note {
+    color: var(--roast);
+    max-width: 30rem;
+}
+
+.recipe {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+}
+
+.recipe caption {
+    text-align: left;
+    padding-bottom: 0.5rem;
+}
+
+.recipe th,
+.recipe td {
+    padding: 0.55rem 0;
+    border-top: 1px solid rgba(35, 21, 14, 0.15);
+    font-weight: 500;
+}
+
+.recipe th {
+    text-align: left;
+}
+
+.recipe td {
+    text-align: right;
+}
+
+.recipe tfoot th,
+.recipe tfoot td {
+    border-top: 2px solid var(--espresso);
+    font-weight: 600;
+}
+
+.swatch {
+    display: inline-block;
+    width: 0.85rem;
+    height: 0.85rem;
+    margin-right: 0.6rem;
+    vertical-align: -0.05rem;
+    border-radius: 2px;
+    border: 1px solid rgba(35, 21, 14, 0.35);
+}
+
+.swatch--espresso { background: var(--layer-espresso); }
+.swatch--chocolate { background: var(--layer-chocolate); }
+.swatch--milk { background: var(--layer-milk); }
+.swatch--foam { background: var(--layer-foam); }
+.swatch--water { background: var(--layer-water); }
+
+@media (max-width: 1000px) {
+    .coffee-layout {
+        grid-template-columns: minmax(0, 1fr);
     }
 
-    .unique-category {
-        margin-bottom: 3rem;
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-        justify-content: center;
-        gap: 2rem;
+    .coffee-tabs {
+        grid-auto-flow: column;
+        grid-auto-columns: max-content;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scrollbar-width: none;
+        border-top: 0;
+        border-bottom: 1px solid rgba(35, 21, 14, 0.15);
+        margin-inline: calc(var(--gutter) * -1);
+        padding-inline: var(--gutter);
     }
 
+    .coffee-tab {
+        flex-direction: column;
+        gap: 0.25rem;
+        padding: 0.75rem 1.25rem 0.85rem 0;
+        border-bottom: 0;
+    }
+
+    .coffee-tab[aria-selected="true"] {
+        box-shadow: inset 0 -4px 0 var(--cobalt);
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .coffee-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .glass {
+        max-width: 13rem;
+    }
 }

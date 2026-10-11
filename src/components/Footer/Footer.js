@@ -1,72 +1,85 @@
-import React from "react";
+import { useState } from "react";
 import "./Footer.css";
 
 const Footer = () => {
+  const [subscribed, setSubscribed] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const email = new FormData(event.currentTarget).get("email");
+    setSubscribed(email);
+    event.currentTarget.reset();
+  };
+
   return (
-    <div>
-      <footer className="footer">
-        <div className="footer-container">
-          <h1 className="footer-title">
-            Caffiene<span>.craft</span>
-          </h1>
-          <p className="para">
-            The ideal workspace for increasing productivity
-          </p>
+    <footer className="footer" id="visit" aria-labelledby="visit-title">
+      <div className="wrap">
+        <h2 id="visit-title" className="display footer-title">
+         <span> Come in. <br/> Stay a while.</span>
+        </h2>
 
-          <div className="footer-content">
-            <div className="footer-details">
-              <h3 className="subtitle">Address</h3>
-              <p className="information">
-                Dynamic town <br />
-                road no.30
-              </p>
-            </div>
-
-            <div className="footer-details">
-              <h3 className="subtitle">Contact</h3>
-              <p className="information">
-                Caffeinecraft@email.com <br />
-                01776452478
-              </p>
-            </div>
-
-            <div className="footer-details">
-              <h3 className="subtitle">Office</h3>
-              <p className="information">
-                Monday-Friday <br /> 8am-5pm
-              </p>
-            </div>
-
-            <div className="footer-details">
-              <p className="newsletter-subtitle"> Subscribe Our Newsletter</p>
-
-              <div className="newsletter">
-                <input
-                  type="email"
-                  placeholder="Email Adress"
-                  className="footer-input"
-                />
-                <button className="btn-footer">
-                  <i className="bx bx-right-arrow-alt"></i>
-                </button>
-              </div>
-            </div>
+        <div className="footer-grid">
+          <div className="footer-block">
+            <h3 className="eyebrow">Address</h3>
+            <p>
+              Road 30
+              <br />
+              Dynamic Town
+            </p>
           </div>
 
-          <div className="group">
-            <ul className="social-links">
-              <a href="#" target="_blank" className="social-link">
-                <i className="bx bxl-linkedin"></i>
-              </a>
-              <a href="#" target="_blank" className="social-link">
-                <i className="bx bxl-facebook"></i>
-              </a>
-            </ul>
-            <span> &#169; All rights reserved </span>
+          <div className="footer-block">
+            <h3 className="eyebrow">Hours</h3>
+            <p>
+              Monday–Friday
+              <br />
+              8am–5pm
+            </p>
           </div>
+
+          <div className="footer-block">
+            <h3 className="eyebrow">Contact</h3>
+            <p>
+              <a href="mailto:caffeinecraft@gmail.com">caffeinecraft@email.com</a>
+              <br />
+              <a href="tel:+8801776452478">01776-452478</a>
+            </p>
+          </div>
+
+          <form className="footer-block newsletter" onSubmit={handleSubmit}>
+            <label htmlFor="newsletter-email" className="eyebrow">
+              Newsletter
+            </label>
+            <p className="newsletter-hint">New drinks and menu changes, once a month.</p>
+            <div className="newsletter-row">
+              <input
+                id="newsletter-email"
+                name="email"
+                type="email"
+                inputMode="email"
+                autoComplete="email"
+                spellCheck="false"
+                required
+                placeholder="you@example.com"
+              />
+              <button type="submit" className="btn btn-primary">
+                Subscribe
+              </button>
+            </div>
+            <p className="newsletter-status" aria-live="polite">
+              {subscribed && `Subscribed. The next issue goes to ${subscribed}.`}
+            </p>
+          </form>
         </div>
-      </footer>
-    </div>
+
+        <div className="footer-base">
+          <span className="footer-logo" translate="no">
+            CaffeineCraft
+          </span>
+          <span>© {new Date().getFullYear()} CaffeineCraft</span>
+        </div>
+      </div>
+    </footer>
   );
 };
 

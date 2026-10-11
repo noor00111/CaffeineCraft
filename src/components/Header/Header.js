@@ -1,67 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
 
+const links = [
+  { href: "#coffee", label: "Coffee" },
+  { href: "#kitchen", label: "Kitchen" },
+  { href: "#space", label: "The Space" },
+  { href: "#visit", label: "Visit" },
+];
+
 const Header = () => {
-  const [changeHeader, setChangeHeader] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
- 
-    const changeHeaderColor = () => {
-      if (window.scrollY >= 50) {
-        setChangeHeader(true);
-      } else {
-        setChangeHeader(false);
-      }
-    };
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-    window.addEventListener("scroll", changeHeaderColor);
-
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e) => e.key === "Escape" && setMenuOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
 
   return (
-    <header
-      className={`header ${changeHeader ? "scroll-header" : ""}`}
-      id="header"
-    >
-      <nav className="navbar container">
-        <a href="#home" className="logo">
-          <span>Caffeine</span>Craft
+    <header className={`header ${scrolled || menuOpen ? "is-solid" : ""}`}>
+      <nav className="navbar wrap" aria-label="Main">
+        <a href="#home" className="logo" translate="no">
+          <span>Caffeine Craft</span>
         </a>
 
-        {/* Hamburger menu */}
-        <button 
-        onClick={() => setShowMenu(!showMenu)}
-        className="hamburger-menu"
-        aria-label="Toggle-menu"
-        >
-            <i className="bx bx-menu"></i>
+        <button
+          type="button"
+          className="menu-toggle"
+          aria-expanded={menuOpen}
+          aria-controls="site-menu"
+          onClick={() => setMenuOpen((open) => !open)}>
+          {menuOpen ? "Close" : "Menu"}
         </button>
 
-            {/* menu */}
-        <div className={`menu ${showMenu ? 'show-menu' : ""}`} id="menu">
-          <ul className="lists">
-            <li>
-              <a href="#place" 
-              className="navbar-link"
-              onClick={()=> setShowMenu(false)}>
-                Place
+        <ul id="site-menu" className={`nav-list ${menuOpen ? "is-open" : ""}`}>
+          {links.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                className="nav-link"
+                onClick={() => setMenuOpen(false)}>
+                {link.label}
               </a>
             </li>
-            <li>
-              <a href="#items" 
-              className="navbar-link"
-              onClick={()=> setShowMenu(false)}>
-                Items
-              </a>
-            </li>
-            <li>
-              <a href="#home" 
-              className="navbar-link active-link"
-              onClick={()=> setShowMenu(false)}>
-                Home
-              </a>
-            </li>
-          </ul>
-        </div>
+          ))}
+        </ul>
       </nav>
     </header>
   );

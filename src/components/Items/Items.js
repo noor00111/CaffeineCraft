@@ -1,86 +1,79 @@
-import React, { useState } from "react";
+import React from "react";
 import data from "../../json/data.json";
-import { Fade } from "react-reveal";
+import { formatTk, handleTabKeys, useQueryState } from "../../utils";
 import "./Items.css";
 
+const sections = [
+  { id: "mains", label: "Mains" },
+  { id: "desserts", label: "Desserts" },
+  { id: "drinks", label: "Cold Drinks" },
+];
+const sectionIds = sections.map((s) => s.id);
+
 const Items = () => {
-  const [filter, setFilter] = useState("main-menu");
+  const [filter, setFilter] = useQueryState("menu", sectionIds, "mains");
+  const dishes = data.categories.filter((dish) => dish.category === filter);
 
   return (
-    <div>
-      <section className="items" id="items">
-        <div className="items-container">
-          <Fade Right delay={495}>
-            <h1>
-              Locate appetising cuisine and
-              <br />
-              select your favourites
-            </h1>
-          </Fade>
+    <section className="kitchen" id="kitchen" aria-labelledby="kitchen-title">
+      <div className="wrap">
+        <header className="section-head">
+          <p className="eyebrow">Kitchen · served 8am–5pm</p>
+          <h2 id="kitchen-title" className="display">Something to go with it</h2>
+          <p>
+            Real food, not just pastries: soups, noodles, pasta and pizza for
+            lunch, and something sweet for the afternoon.
+          </p>
+        </header>
 
-          <ul className="items-filter">
-            <Fade Right delay={700}>
-              <li
-                className={`item items-line ${
-                  filter === "main-menu" && "active-item"
-                }`}
-                onClick={() => setFilter("main-menu")}
-                data-filter=".delicacies"
-              >
-                <h4>Main Menu</h4>
-              </li>
-
-              <li
-                className={`item items-line ${
-                  filter === "deserts" && "active-item"
-                }`}
-                onClick={() => setFilter("deserts")}
-                data-filter=".desert"
-              >
-                <h4> Deserts </h4>
-              </li>
-
-              <li
-                className={`item items-line ${
-                  filter === "drinks" && "active-item"
-                }`}
-                onClick={() => setFilter("drinks")}
-                data-filter=".drinks"
-              >
-                <h4>Drinks</h4>
-              </li>
-            </Fade>
-          </ul>
-
-          <div className="items-content">
-            {data.categories
-            .filter((category) => category.category === filter)
-            .map((category, index) => {
-                return(
-                  <Fade key={index} bottom delay={100 * index}>
-                    <article className="items-card main-menu">
-                      <div className="items-shape">
-                        <img
-                          src={category.imageUrl}
-                          alt={category.title}
-                          className="items-img"
-                        />
-                      </div>
-                      <div className="items-data">
-                        <h2>Tk. {category.price}</h2>
-                        <h3>{category.title}</h3>
-                        <button className="button btn-items">
-                          <i className="bx bx-shopping-bag"></i>
-                        </button>
-                      </div>
-                    </article>
-                  </Fade>
-                );
-            })}
-          </div>
+        <div className="kitchen-tabs" role="tablist" aria-label="Kitchen menu">
+          {sections.map((section) => {
+            const count = data.categories.filter(
+              (d) => d.category === section.id
+            ).length;
+            return (
+              <button
+                key={section.id}
+                type="button"
+                role="tab"
+                id={`menu-tab-${section.id}`}
+                data-tab={section.id}
+                aria-selected={filter === section.id}
+                aria-controls="menu-panel"
+                tabIndex={filter === section.id ? 0 : -1}
+                className="kitchen-tab"
+                onClick={() => setFilter(section.id)}
+                onKeyDown={(e) => handleTabKeys(e, sectionIds, filter, setFilter)}>
+                {section.label}
+                <span className="kitchen-tab-count">{count}</span>
+              </button>
+            );
+          })}
         </div>
-      </section>
-    </div>
+
+        <ul
+          className="menu-list"
+          id="menu-panel"
+          role="tabpanel"
+          aria-labelledby={`menu-tab-${filter}`}>
+          {dishes.map((dish) => (
+            <li key={dish.id} className="menu-item">
+              <img
+                src={dish.imageUrl}
+                alt=""
+                width="96"
+                height="96"
+                loading="lazy"
+                className="menu-thumb"
+              />
+              <span className="menu-name">{dish.title}</span>
+              <span className="menu-leader" aria-hidden="true" />
+              <span className="price menu-price">{formatTk(dish.price)}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
   );
 };
 
